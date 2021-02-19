@@ -1,13 +1,11 @@
 const mongoose = require("mongoose");
 //const uniqueValidator = require("mongoose-unique-validator");
 
-const UsersModel = mongoose.model(
-    "Blackjack-API",
-    {
-        email: { type: String, required: true, unique: true },
-        password: { type: String, required: true } 
-    },
-    "Users"
-);
+const userSchema = mongoose.Schema({ 
+    email: { type: String, required: true, unique: true }, // adresse électronique de l'utilisateur [unique] 
+    password: { type: String, required: true } // hachage du mot de passe de l'utilisateur
+});
 
-module.exports = { UsersModel };
+//userSchema.plugin(uniqueValidator);
+
+module.exports = mongoose.model("Users", userSchema);
